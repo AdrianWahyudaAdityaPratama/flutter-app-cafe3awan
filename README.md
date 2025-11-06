@@ -50,48 +50,56 @@ lib/
 │
 └── widgets/
     └── menu_card.dart
-🧠 Tech Stack
-Flutter (v3+)
 
-Provider (state management)
+```
 
-Dart
+## 🧠 Tech Stack
 
-Material 3 Design
+- Flutter (v3+)
+- Provider (state management)
+- Dart
+- Material 3 Design
+- MVVM Architecture
 
-MVVM Architecture
+### 🚀 Getting Started
 
-🚀 Getting Started
 1️⃣ Clone the repo
-bash
-Copy code
+
+```bash
 git clone https://github.com/yourusername/3awan_cafe_resto.git
 cd 3awan_cafe_resto
+```
+
 2️⃣ Install dependencies
-bash
-Copy code
+
+```bash
 flutter pub get
+```
+
 3️⃣ Run the app
-bash
-Copy code
+
+```bash
 flutter run
-🎨 Design Style Guide
-Element	Style
-Primary Color	#1976D2
-Background	#E3F2FD
-Font	Clean, rounded sans-serif
-Corner Radius	12–20
-Shadow	Soft and minimal
-Theme	Pastel blue modern cafe vibes ☕
+```
 
-📸 Screenshots
-Home Page	Cart Page
+### 🎨 Design Style Guide
 
-📷 Letakkan screenshot kamu di folder /screenshots/ dengan nama home.png dan cart.png
+- Element Style
+- Primary Color #1976D2
+- Background #E3F2FD
+- Font Clean, rounded sans-serif
+- Corner Radius 12–20
+- Shadow Soft and minimal
+- Theme Pastel blue modern cafe vibes ☕
 
-❤️ Credits
+### ❤️ Credits
+
 Developed with ☕ and Flutter by Adriyan Riyan
 
-📄 License
+### 📄 License
+
 This project is licensed under the MIT License — feel free to modify and use it for your own cafe or resto app.
+
+```
+
 ```
