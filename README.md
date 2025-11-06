@@ -99,7 +99,3 @@ Developed with ☕ and Flutter by Adriyan Riyan
 ### 📄 License
 
 This project is licensed under the MIT License — feel free to modify and use it for your own cafe or resto app.
-
-```
-
-```
