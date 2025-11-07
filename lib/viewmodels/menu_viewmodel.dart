@@ -9,11 +9,11 @@ class MenuViewModel extends ChangeNotifier {
   List<MenuItemModel> get items => _items;
   bool get loading => _loading;
 
-  Future<void> loadMenu() async {
+  Future<void> loadMenu({String? search, String? category}) async {
     _loading = true;
     notifyListeners();
     try {
-      _items = await MenuService.fetchMenu();
+      _items = await MenuService.fetchMenu(search: search, category: category);
     } catch (e) {
       _items = [];
     }

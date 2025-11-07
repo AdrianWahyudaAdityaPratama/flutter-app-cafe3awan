@@ -1,5 +1,5 @@
 class MenuItemModel {
-  final String id;
+  final int id;
   final String name;
   final String imageUrl;
   final double price;
@@ -14,7 +14,7 @@ class MenuItemModel {
   });
 
   factory MenuItemModel.fromJson(Map<String, dynamic> json) => MenuItemModel(
-    id: json['id'].toString(),
+    id: json['id'],
     name: json['name'],
     imageUrl: json['imageUrl'],
     price: (json['price'] as num).toDouble(),

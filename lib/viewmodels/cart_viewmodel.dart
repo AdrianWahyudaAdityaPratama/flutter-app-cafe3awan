@@ -1,12 +1,12 @@
-import 'package:cafe3awan/core/services/menu_service.dart';
-import 'package:cafe3awan/models/cart_model.dart';
+import 'package:cafe3awan/core/services/order_service.dart';
+import 'package:cafe3awan/models/cart_item_model.dart';
 import 'package:cafe3awan/models/menu_model.dart';
 import 'package:flutter/material.dart';
 
 class CartViewModel extends ChangeNotifier {
-  final Map<String, CartItem> _items = {};
+  final Map<int, CartItemModel> _items = {};
 
-  List<CartItem> get items => _items.values.toList();
+  List<CartItemModel> get items => _items.values.toList();
 
   int get totalItems => _items.length;
   int get totalQty => _items.values.fold(0, (s, e) => s + e.qty);
@@ -16,12 +16,12 @@ class CartViewModel extends ChangeNotifier {
     if (_items.containsKey(menu.id)) {
       _items[menu.id]!.qty++;
     } else {
-      _items[menu.id] = CartItem(item: menu, qty: 1);
+      _items[menu.id] = CartItemModel(item: menu, qty: 1);
     }
     notifyListeners();
   }
 
-  void removeSingle(String id) {
+  void removeSingle(int id) {
     if (!_items.containsKey(id)) return;
     final cartItem = _items[id]!;
     if (cartItem.qty > 1)
@@ -31,7 +31,7 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeAll(String id) {
+  void removeAll(int id) {
     _items.remove(id);
     notifyListeners();
   }
@@ -41,31 +41,21 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> placeOrder({
-    required String paymentMethod,
-    required double paidAmount,
-  }) async {
-    // Build payload
+  Future<bool> placeOrder({required String customerName}) async {
+    if (_items.isEmpty) return false;
+
+    // Build payload sesuai format baru
     final payload = {
+      'customer_name': customerName,
       'items': _items.values
-          .map(
-            (c) => {
-              'id': c.item.id,
-              'name': c.item.name,
-              'price': c.item.price,
-              'qty': c.qty,
-            },
-          )
+          .map((c) => {'menu_id': c.item.id, 'quantity': c.qty})
           .toList(),
-      'totalPrice': totalPrice,
-      'totalQty': totalQty,
-      'paymentMethod': paymentMethod,
-      'paidAmount': paidAmount,
     };
 
-    // Simulate API call to POST http://localhost:5000/api/cart
-    final success = await MenuService.postCart(payload);
-    if (success) clear(); // on success clear cart
+    // Simulate API call ke OrderService
+    final success = await OrderService.postOrder(payload);
+
+    if (success) clear(); // clear cart jika sukses
     return success;
   }
 }

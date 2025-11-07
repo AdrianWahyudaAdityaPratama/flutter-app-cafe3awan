@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'viewmodels/menu_viewmodel.dart';
 import 'viewmodels/cart_viewmodel.dart';
+import 'viewmodels/order_viewmodel.dart';
 
 void main() {
   runApp(const RestoCafeApp());
@@ -18,6 +19,9 @@ class RestoCafeApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => MenuViewModel()),
         ChangeNotifierProvider(create: (_) => CartViewModel()),
+        ChangeNotifierProvider(
+          create: (_) => OrderViewModel(),
+        ), // ✅ tambahkan ini
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -37,9 +41,7 @@ class RestoCafeApp extends StatelessWidget {
           ),
         ),
         home: const SplashView(),
-        routes: {
-          '/home': (context) => const HomeView(), // ⬅️ rute tujuan Splash
-        },
+        routes: {'/home': (context) => const HomeView()},
       ),
     );
   }
